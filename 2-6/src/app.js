@@ -8,18 +8,53 @@
 
 
 const express = require('express');
-const app = express();
 const userRouters = require('../router/user_router');
-function log_middlewarer(req, res, next) {
-    console.info("请求进来了");
-    next();
+const app = express();
+app.get('/demo', (req, res) => {
+    throw new Error("测试一下异常功能");
+    // res.json({
+    //     message
+    // })
+})
+function demo_middleware(req, res, next) {
+    try {
+        //业务逻辑操作
+    } catch (error) {
+        next(error);
+    }
 }
-app.use(log_middlewarer);
+function error_handler_middleware(err, req, res, next) {
+    if (err) {
+        let { message } = err;
+        res.status(500)
+            .json({
+                message: `服务器异常:${message}`
+            })
+    } else {
 
-app.use(express.static('static', {
-    extensions:['html','htm']
-}))
-app.use('/user',userRouters);
+    }
+}
+app.use(error_handler_middleware);
+function not_found_handler(req, res, next) {
+    res.json({
+        message: 'API不存在'
+    })
+}
+app.use(not_found_handler);
+
+
+
+
+// function log_middlewarer(req, res, next) {
+//     console.info("请求进来了");
+//     next();
+// }
+// app.use(log_middlewarer);
+
+// app.use(express.static('static', {
+//     extensions:['html','htm']
+// }))
+// app.use('/user',userRouters);
 
 
 // //中间件完整的结构
