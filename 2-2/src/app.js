@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+// app-->Application-->web服务的实例
 //1.通过请求的方法类型：get/post/put/delete
 // app.get('/demo', (req, res) => {
 //     //req：请求对象
@@ -34,15 +35,25 @@ const app = express();
 //         method: req.method
 //     });
 // })
-app.all('*', (req, res) => {
-    res.json({
-        message: "这是一个演示",
-        method: req.method,
-        url:req.path
-    });
-})
-
-
+// app.all('*', (req, res) => {
+//     res.json({
+//         message: "这是一个演示",
+//         method: req.method,
+//         url:req.path
+//     });
+// })
+// app.use((req, res) => {
+//     res.json({
+//         message: "这是一个演示",
+//         method: req.method,
+//         url:req.path
+//     })
+// })
+const memberRouter = require('./member.router');
+const skuRouter = require('./sku.router');
+//注册路由
+app.use('/member',memberRouter);
+app.use('/sku',skuRouter);
 app.listen(8088, '127.0.0.1', () => {
     console.info("服务器已经启动了！");
 });
