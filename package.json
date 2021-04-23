@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:2-6":"nodemon ./2-6/src/app.js",
-    "start:2-2":"nodemon ./2-2/src/app.js",
+    "start:2-6": "nodemon ./2-6/src/app.js",
+    "start:2-2": "nodemon ./2-2/src/app.js",
     "start:2-1": "nodemon ./2-1/app.js",
     "start:1-5": "nodemon ./1-5/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,9 +15,11 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^2.0.7",
-    "nrm": "^1.2.1"
+    "nrm": "^1.2.1",
+    "sequelize-cli": "^6.2.0"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sequelize": "^6.6.2"
   }
 }
