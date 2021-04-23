@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:2-6":"nodemon ./2-6/src/app.js",
     "start:2-2":"nodemon ./2-2/src/app.js",
     "start:2-1": "nodemon ./2-1/app.js",
     "start:1-5": "nodemon ./1-5/app.js",
