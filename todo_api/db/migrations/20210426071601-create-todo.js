@@ -7,16 +7,27 @@ module.exports = {
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
-      },
-      name: {
-        type: Sequelize.STRING
-      },
-      deadline: {
-        type: Sequelize.DATE
-      },
-      content: {
+      }
+      ,name: {
         type: Sequelize.STRING
       }
+      ,deadline: {
+        type: Sequelize.DATE
+      }
+      ,content: {
+        type: Sequelize.STRING
+      }
+      ,status: {
+        type: Sequelize.INTEGER
+      }
+      // ,createdAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE
+      // }
+      // ,updatedAt: {
+      //   allowNull: false,
+      //   type: Sequelize.DATE
+      // }
     });
   },
   down: async (queryInterface, Sequelize) => {

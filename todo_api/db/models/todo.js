@@ -1,36 +1,40 @@
 'use strict';
-
-const { DataTypes } = require("sequelize/types");
-const { sequelize } = require(".");
-
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class Todo extends Model {
-    static associate(models) {
-    }
-  };
-  Todo.init({
-    name: DataTypes.STRING,
-    deadline: DataTypes.DATE,
-    content: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Todo',
-  });
-  return Todo;
-};
+// const {
+//   Model
+// } = require('sequelize');
 // module.exports = (sequelize, DataTypes) => {
-//   const Todo = sequelize.define('Todo', {
+//   class Todo extends Model {
+//     /**
+//      * Helper method for defining associations.
+//      * This method is not a part of Sequelize lifecycle.
+//      * The `models/index` file will call this method automatically.
+//      */
+//     static associate(models) {
+//       // define association here
+//     }
+//   };
+//   Todo.init({
 //     name: DataTypes.STRING,
 //     deadline: DataTypes.DATE,
 //     content: DataTypes.STRING
 //   }, {
-//     TimeRanges: false
+//     sequelize,
+//     modelName: 'Todo',
 //   });
-//   Todo.associate = function (models) {
-
-//   };
 //   return Todo;
-// }
+// };
+
+module.exports = (sequelize, DataTypes) => {
+  const Todo = sequelize.define('Todo', {
+    name: DataTypes.STRING,
+    deadline: DataTypes.DATE,
+    content: DataTypes.STRING,
+    status: DataTypes.INTEGER
+  }, {
+    timestamps: false
+  });
+  Todo.associate = function (models) {
+
+  };
+  return Todo;
+}
