@@ -29,7 +29,10 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     deadline: DataTypes.DATE,
     content: DataTypes.STRING,
-    status: DataTypes.INTEGER
+    status: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    }
   }, {
     timestamps: false
   });

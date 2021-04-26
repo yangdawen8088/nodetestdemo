@@ -9,8 +9,23 @@ app.use(express.urlencoded());
 app.use(bodyParser.urlencoded({ extended: true }));
 /** 查询任务列表 **/
 app.get('/list/:status/:page', async (req, res, next) => {
+    let { status, page } = req.params;
+    let limit = 10;
+    let offset = (page - 1) * limit;
+    let where = {};
+    if (status != 0) {
+        where.status = status;
+    }
+    //  1.状态  1：表示代办，2：表示完成，3：表示删除，0：全部
+    //  2.分页的处理
+    let list = await models.Todo.findAndCountAll({
+        where,
+        offset,
+        limit
+    })
     res.json({
-        list: []
+        list: list,
+        message: '列表查询成功'
     })
 });
 /** 创建一个todo **/
@@ -57,10 +72,19 @@ app.post('/updata', async (req, res, next) => {
 /** 修改状态 删除 **/
 app.post('/updata_status', async (req, res, next) => {
     let { id, status } = req.body;
+    let todo = await models.Todo.findOne({
+        where: {
+            id
+        }
+    });
+    if (todo && status != todo.status) {
+        //执行更新操作
+        todo = await todo.update({
+            status
+        });
+    }
     res.json({
-        todo: {},
-        id,
-        status
+        todo
     })
 });
 
