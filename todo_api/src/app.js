@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 
-const models = require('../db/models')
+const models = require('../db/models');
+const ecosystemConfig = require('../ecosystem.config');
 
 app.use(express.json());
 app.use(express.urlencoded());
@@ -99,3 +100,24 @@ app.use((err, req, res, next) => {
 app.listen(8088, () => {
     console.info("服务器已经启动成功！");
 })
+
+
+// 启动命令 / 运维命令 / 运维文档
+// 1.pm2 start ecosystemConfig.config.js
+// 2.pm2 log
+// 3.pm2 restart ecosystemConfig.config.js
+
+//技术栈
+//1.node-->http,异常
+//2.web框架,express,hapi,koa,egg
+//3.参数校验
+//4.MySql的使用,
+//5.ORM框架的学习，sequelize使用
+
+//技术的关键点
+//api
+//web-->webserver-->router-->hander-->orm-->db
+
+//注意事项
+//需要做详细的模型设计-->模型之间的关系
+//
